@@ -1,0 +1,332 @@
+/* 文档页面样式 */
+.docs-main {
+    padding-top: 120px;
+    min-height: 100vh;
+    background: #000;
+    color: #fff;
+}
+
+/* 文档布局 */
+.docs-layout {
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 侧边栏布局 */
+.docs-sidebar {
+    width: 250px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 120px;
+    height: calc(100vh - 120px);
+    overflow-y: auto;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 导航容器 */
+.docs-nav {
+    flex-grow: 1;
+    margin-top: 60px;
+}
+
+.docs-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.docs-nav li {
+    margin-bottom: 15px;
+}
+
+.docs-nav a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    padding: 8px 15px;
+    border-radius: 4px;
+    position: relative;
+}
+
+.docs-nav a::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin-right: 10px;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.docs-nav a:hover {
+    color: #fff;
+}
+
+.docs-nav a:hover::before {
+    opacity: 1;
+    transform: scale(1);
+    width: 6px;
+    height: 6px;
+}
+
+.docs-nav a.active {
+    color: #FF3D3D;
+}
+
+.docs-nav a.active::before {
+    opacity: 1;
+    transform: scale(1);
+    background-color: #FF3D3D;
+    width: 6px;
+    height: 6px;
+}
+
+/* 主内容区域调整 */
+.docs-container {
+    flex-grow: 1;
+    max-width: 900px;
+    margin-left: 50px;
+    padding: 40px 20px;
+}
+
+.docs-container h1 {
+    font-size: 3rem;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.docs-content {
+    line-height: 1.8;
+}
+
+.docs-section {
+    margin-bottom: 40px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+.docs-section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #FF3D3D;
+}
+
+.docs-section p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+.docs-section ul,
+.docs-section ol {
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.docs-section li {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+/* 返回按钮样式 */
+.back-link {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.back-link i {
+    margin-right: 10px;
+    font-size: 1.4rem;
+}
+
+.back-link:hover {
+    color: #FF3D3D;
+}
+
+.back-link span {
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
+
+/* 文档页面导航栏调整 */
+.docs-main .header-content {
+    padding: 15px 40px;
+}
+
+/* 语言切换按钮 */
+.language-switch {
+    display: flex;
+    gap: 20px;
+    padding: 0 15px;
+    margin-top: 60px;
+    height: 40px;
+    align-items: center;
+}
+
+.lang-btn {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 8px 0;
+    cursor: pointer;
+    font-size: 1rem;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.lang-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #FF3D3D;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.lang-btn:hover {
+    color: #fff;
+}
+
+.lang-btn:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.lang-btn.active {
+    color: #FF3D3D;
+}
+
+.lang-btn.active::after {
+    transform: scaleX(1);
+}
+
+/* 响应式调整 */
+@media (max-width: 968px) {
+    .docs-layout {
+        flex-direction: column;
+    }
+
+    .docs-sidebar {
+        width: 100%;
+        position: relative;
+        top: 0;
+        height: auto;
+        padding: 20px 0;
+        margin-bottom: 20px;
+        flex-direction: row;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .language-switch {
+        margin-top: 0;
+        width: auto;
+    }
+
+    .docs-nav {
+        flex-grow: 1;
+        margin-top: 0;
+    }
+
+    .docs-nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 0;
+    }
+
+    .docs-container {
+        margin-left: 0;
+    }
+
+    .docs-nav a {
+        padding: 6px 12px;
+    }
+
+    .docs-nav a::before {
+        width: 5px;
+        height: 5px;
+        margin-right: 8px;
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .docs-nav a:hover::before {
+        width: 5px;
+        height: 5px;
+    }
+
+    .docs-nav a.active::before {
+        width: 5px;
+        height: 5px;
+        background-color: #FF3D3D;
+    }
+}
+
+@media (max-width: 768px) {
+    .docs-container h1 {
+        font-size: 2rem;
+    }
+
+    .docs-section h2 {
+        font-size: 1.5rem;
+    }
+
+    .docs-section {
+        padding: 20px;
+    }
+
+    .docs-main .header-content {
+        padding: 15px 20px;
+    }
+    
+    .back-link span {
+        font-size: 1rem;
+    }
+    
+    .back-link i {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .docs-nav a {
+        font-size: 1rem;
+        padding: 4px 10px;
+    }
+
+    .docs-nav a::before {
+        width: 4px;
+        height: 4px;
+        margin-right: 6px;
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .docs-nav a:hover::before {
+        width: 4px;
+        height: 4px;
+    }
+
+    .docs-nav a.active::before {
+        width: 4px;
+        height: 4px;
+        background-color: #FF3D3D;
+    }
+}

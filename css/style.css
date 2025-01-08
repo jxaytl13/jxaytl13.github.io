@@ -4,6 +4,7 @@
     padding: 0;
     box-sizing: border-box;
     font-weight: normal;
+    cursor: default; /* 恢复原始鼠标图标样式 */
 }
 
 body {
@@ -47,10 +48,28 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 20px;
-    z-index: 100;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
     transition: transform 0.3s ease, opacity 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px 40px;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-title {
+    font-size: 1.5rem;
+    color: #fff;
+    letter-spacing: 2px;
+    font-weight: 300;
+    text-transform: uppercase;
 }
 
 .navigation {
@@ -62,22 +81,49 @@ body {
 }
 
 .nav-links {
-    display: none;
+    display: flex;
+    list-style: none;
+    gap: 40px;
 }
 
-.nav-links li {
-    margin-left: 30px;
-}
-
-.nav-links a {
+.nav-link {
     color: #fff;
     text-decoration: none;
-    font-size: 16px;
-    transition: color 0.3s ease;
+    font-size: 14px;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+    padding-bottom: 0;
+    position: relative;
+    height: 100%;
+    display: inline-block;
 }
 
-.nav-links a:hover {
-    color: #888;
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #FF3D3D;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+    opacity: 1;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-link.active {
+    opacity: 1;
+}
+
+.nav-link.active::after {
+    width: 100%;
 }
 
 /* 英雄区域（首页） */
@@ -118,53 +164,211 @@ body {
     font-size: clamp(1rem, 4vw, 1.5rem);
     max-width: 600px;
     margin: 0 auto;
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.5s ease-out;
+    will-change: opacity, transform;
 }
 
 /* 项目区域 */
-.project-section {
+.project-screen {
     height: 100vh;
-    padding: 0;  /* 移除内边距以确保完整占据视口高度 */
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #000;
+    overflow: hidden;
 }
 
-.project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;  /* 添加水平内边距 */
-}
-
-.project-grid img {
+/* 添加背景图样式 */
+.project-screen::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 400px;
-    object-fit: cover;
-    border-radius: 0;
-    transition: transform 0.3s ease;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.6;
+    z-index: 1;
 }
 
-.project-grid img:hover {
-    transform: none;
+/* 第一个项目的背景（Hierarchy Vision Plus） */
+.project-screen:nth-child(1)::before {
+    background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1400');  /* 代码编辑器背景 */
+    opacity: 0.4;  /* 降低不透明度以提高文字可读性 */
 }
 
-/* 页脚（About Us） */
+/* 第二个项目的背景（UI List Animator） */
+.project-screen:nth-child(2)::before {
+    background-image: url('https://images.unsplash.com/photo-1607799279861-4dd421887fb3?w=1400');  /* UI/UX 设计背景 */
+    opacity: 0.4;  /* 降低不透明度以提高文字可读性 */
+}
+
+.project-item {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    max-width: 1400px;
+    width: 100%;
+    padding: 0 40px;
+    gap: 60px;
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.8s ease-out;
+}
+
+.project-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 移除原来的图片容器 */
+.project-image {
+    display: none;
+}
+
+/* 调整内容区域样式 */
+.project-content {
+    flex: none;
+    max-width: 600px;
+    padding: 40px;
+    border-radius: 4px;
+}
+
+.project-content h2 {
+    font-size: 4rem;
+    margin-bottom: 40px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    line-height: 1;
+    color: #fff;
+    white-space: nowrap;
+}
+
+.project-content h2 span {
+    display: inline;
+    color: #fff;
+}
+
+.project-description {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    color: #fff;
+    margin-bottom: 40px;
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.5s ease-out;
+    will-change: opacity, transform;
+}
+
+.project-description.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.project-link {
+    display: inline-flex;
+    align-items: center;
+    color: #FF3D3D;
+    text-decoration: none;
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.5s ease-out;
+    will-change: opacity, transform;
+}
+
+.project-link.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.project-link .arrow {
+    margin-left: 12px;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.project-link:hover {
+    color: #ff6b6b;
+}
+
+.project-link:hover .arrow {
+    animation: breathe 1.5s infinite ease-in-out;
+}
+
+@keyframes breathe {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(5px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* 第二个项目特殊样式 */
+.project-screen:nth-child(2) .project-item {
+    justify-content: flex-end;
+    text-align: right;
+}
+
+.project-screen:nth-child(2) .project-content {
+    padding-left: 100px;
+}
+
+.project-screen:nth-child(2) .project-link {
+    justify-content: flex-end;
+}
+
+.project-screen:nth-child(2) .project-link .arrow {
+    margin-left: 0;
+    margin-right: 12px;
+}
+
+.project-screen:nth-child(2) .project-link:hover .arrow {
+    animation: breatheLeft 1.5s infinite ease-in-out;
+}
+
+@keyframes breatheLeft {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(-5px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* 页脚（About Me） */
 .main-footer {
     height: 100vh;
-    background: #000;
+    background: #000;  /* 改为纯黑色背景 */
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0;  /* 移除内边距以确保完整占据视口高度 */
+    padding: 0;
 }
 
 .footer-content {
+    position: relative;
+    z-index: 2;
+    padding: 40px;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;  /* 添加水平内边距 */
 }
 
 .footer-grid {
@@ -176,10 +380,19 @@ body {
 .footer-section {
     max-width: 800px;
     margin: 0 auto;
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.8s ease-out;
+    will-change: opacity, transform;
+}
+
+.footer-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .footer-title {
-    font-size: clamp(2rem, 8vw, 4rem);
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
     margin-bottom: 20px;
     letter-spacing: 5px;
     text-align: center;
@@ -201,6 +414,9 @@ body {
     margin-bottom: 30px;
     color: #fff;
     text-align: center;
+    text-shadow: none;
+    position: relative;
+    z-index: 2;
 }
 
 .footer-citation {
@@ -209,6 +425,9 @@ body {
     margin-bottom: 30px;
     line-height: 1.6;
     text-align: center;
+    text-shadow: none;
+    position: relative;
+    z-index: 2;
 }
 
 /* 响应式调整 */
@@ -251,6 +470,18 @@ body {
     border-radius: 50%;
     transform: translateX(-50%);
     animation: scroll 2s infinite;
+}
+
+/* 红色竖线 */
+.scroll-indicator::after {
+    content: '';
+    position: absolute;
+    top: calc(100% + 30px);  /* 鼠标图标下方30px */
+    left: 50%;
+    width: 1px;
+    height: 150px;
+    background: #E31C25;  /* 使用主色红 */
+    transform: translateX(-50%);
 }
 
 @keyframes scroll {
@@ -299,90 +530,6 @@ body {
     }
 }
 
-/* 添加入场动画关键帧 */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes slideInFromTop {
-    from {
-        opacity: 0;
-        transform: translateY(-50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* 添加入场动画类 */
-.fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-}
-
-.fade-in.visible {
-    animation: fadeIn 1s ease forwards;
-}
-
-/* Logo 入场动画 */
-.logo {
-    opacity: 0;
-    animation: slideInFromTop 1s ease forwards;
-    animation-delay: 0.5s;
-}
-
-/* 英雄区域动画 */
-.hero-content h1 {
-    opacity: 0;
-    animation: fadeIn 1s ease forwards;
-    animation-delay: 1s;
-}
-
-.hero-content p {
-    opacity: 0;
-    animation: fadeIn 1s ease forwards;
-    animation-delay: 1.5s;
-}
-
-/* 项目图片动画 */
-.project-grid img {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: transform 0.3s ease, opacity 0.5s ease;
-}
-
-.project-grid img.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* 页脚动画 */
-.footer-section {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: transform 0.3s ease, opacity 0.5s ease;
-}
-
-.footer-section.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* 移除顶部标题相关样式 */
-.main-header,
-.navigation,
-.logo {
-    display: none;
-}
-
 /* 社交媒体图标样式 */
 .social-icons {
     display: flex;
@@ -396,17 +543,185 @@ body {
     font-size: 24px;
     text-decoration: none;
     transition: transform 0.3s ease, color 0.3s ease;
+    display: flex;
+    align-items: center;
 }
 
 .social-icon:hover {
-    color: #888;
+    color: #FF3D3D;
     transform: translateY(-5px);
 }
 
-/* 特别为bilibili添加自定义图标（因为Font Awesome可能没有bilibili图标） */
-.fa-bilibili:before {
-    content: "B站";
-    font-style: normal;
+/* Bilibili SVG 图标样式 */
+.bilibili-icon {
+    width: 24px;
+    height: 24px;
+}
+
+/* 微信弹出层样式 */
+.wechat-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.wechat-popup.active {
+    display: flex;
+    opacity: 1;
+}
+
+.popup-content {
+    background: rgba(30, 30, 30, 0.9);
+    padding: 30px;
+    border-radius: 10px;
+    position: relative;
+    margin: auto;
+    max-width: 300px;
+    width: 90%;
+    text-align: center;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+}
+
+.wechat-popup.active .popup-content {
+    transform: translateY(0);
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+    color: #888;
+}
+
+.qr-container {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.qr-container img {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+.qr-container p {
+    color: #fff;
+    font-size: 16px;
+    margin: 0;
+}
+
+/* 修改微信弹窗样式 */
+.wechat-info {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.wechat-large-icon {
+    font-size: 48px;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.wechat-id {
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.wechat-value {
+    color: #fff;
+    font-size: 20px;
+    margin-bottom: 20px;
     font-weight: bold;
-    font-family: Arial, sans-serif;
-} 
+    letter-spacing: 1px;
+}
+
+.copy-btn {
+    background: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    padding: 10px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.copy-btn:hover {
+    background: #fff;
+    color: #000;
+}
+
+.copy-btn.copied {
+    background: #2ecc71;
+    border-color: #2ecc71;
+    color: #fff;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        padding: 15px 20px;
+    }
+
+    .header-title {
+        margin-bottom: 15px;
+    }
+
+    .nav-links {
+        gap: 20px;
+    }
+}
+
+/* 头像样式 */
+.avatar-container {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 40px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* 滚动时的文字缓入效果 */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease-out;
+    will-change: opacity, transform;
+}
+
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.header-content, .nav-links li, .hero-content h1 {
+    opacity: 1;
+    transform: none;
+    animation: none;
+}

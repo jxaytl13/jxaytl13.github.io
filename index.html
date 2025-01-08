@@ -8,53 +8,108 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <header class="main-header">
+        <div class="header-content">
+            <div class="header-title">T·L CREATIVE WARFARE</div>
+            <nav class="header-nav">
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-link active">HOME</a></li>
+                    <li><a href="#project" class="nav-link">PROJECT</a></li>
+                    <li><a href="#about" class="nav-link">ABOUT</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
     <div class="loader">
         <div class="loader-content">Loading...</div>
     </div>
 
     <main>
-        <section id="hero" class="hero-section">
+        <section id="home" class="section hero-section">
             <div class="hero-content">
                 <h1>T·L CREATIVE WARFARE</h1>
-                <p>Explore the Creative World</p>
+                <p class="fade-in-section">Explore the Creative World</p>
             </div>
             <div class="scroll-indicator"></div>
         </section>
 
-        <section id="project" class="project-section">
-            <div class="project-grid">
-                <!-- 图片网格将通过 JS 动态加载 -->
+        <section id="project" class="section project-section">
+            <div class="project-screen">
+                <div class="project-item">
+                    <div class="project-content">
+                        <h2>Hierarchy Vision Plus</h2>
+                        <p class="project-description fade-in-section">
+                            Editor extension that displays component icons in the Hierarchy window, 
+                            enhancing scene management with easy hotkey toggle functionality. 
+                            A powerful tool designed to streamline your Unity workflow and improve 
+                            project organization.
+                        </p>
+                        <a href="docs/hierarchy-vision-plus.html" class="project-link fade-in-section">READ DOCUMENTATION <span class="arrow"><i class="fas fa-arrow-right"></i></span></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-screen">
+                <div class="project-item reverse">
+                    <div class="project-content">
+                        <h2>Ui List Animator</h2>
+                        <p class="project-description fade-in-section">
+                            A powerful Unity UI system for smooth list/grid animations. 
+                            Supports position, scale, rotation and alpha effects. 
+                            Perfect for game menus and easy to set up, bringing life 
+                            to your UI with professional-grade animations.
+                        </p>
+                        <a href="docs/ui-list-animator.html" class="project-link fade-in-section"><span class="arrow"><i class="fas fa-arrow-left"></i></span>READ DOCUMENTATION</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section main-footer">
+            <div class="footer-content">
+                <div class="footer-grid">
+                    <div class="footer-section">
+                        <div class="avatar-container">
+                            <img src="images/TouXiang.jpg" alt="Profile Avatar" class="avatar">
+                        </div>
+                        <h2 class="footer-title">About <span>Me</span></h2>
+                        <p class="footer-description">
+                            As a passionate Unity developer, I specialize in creating immersive gaming experiences 
+                            and developing powerful editor tools. With extensive experience in game development 
+                            and a keen eye for design, I bring games to life through innovative gameplay mechanics 
+                            and stunning visual effects.
+                        </p>
+                        <p class="footer-citation">
+                            "I believe that great games are born from the perfect blend of technical excellence 
+                            and artistic vision. Every project is an opportunity to push the boundaries of what's 
+                            possible in game development."
+                        </p>
+                        <div class="social-icons">
+                            <a href="mailto:455471553@qq.com" class="social-icon"><i class="fas fa-envelope"></i></a>
+                            <a href="javascript:void(0)" onclick="showWeChatQR()" class="social-icon"><i class="fab fa-weixin"></i></a>
+                            <a href="tencent://message/?uin=455471553&Site=&Menu=yes" class="social-icon"><i class="fab fa-qq"></i></a>
+                            <a href="https://b23.tv/fgeXgEx" target="_blank" class="social-icon">
+                                <svg class="bilibili-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                                    <path fill="currentColor" d="M777.514667 131.669333a53.333333 53.333333 0 0 1 0 75.434667L728.746667 255.829333h49.92A160 160 0 0 1 938.666667 415.829333v320a160 160 0 0 1-160 160H245.333333A160 160 0 0 1 85.333333 735.829333v-320a160 160 0 0 1 160-160h49.749334L246.4 207.104a53.333333 53.333333 0 1 1 75.392-75.434667l113.152 113.152c3.370667 3.370667 6.186667 7.04 8.448 10.965334h137.088c2.261333-3.925333 5.077333-7.594667 8.448-10.965334l113.152-113.152a53.333333 53.333333 0 0 1 75.434667 0z m1.152 231.253334H245.333333a53.333333 53.333333 0 0 0-53.333333 53.333333v320a53.333333 53.333333 0 0 0 53.333333 53.333333h533.333334a53.333333 53.333333 0 0 0 53.333333-53.333333v-320a53.333333 53.333333 0 0 0-53.333333-53.333333zM341.333333 469.333333a53.333333 53.333333 0 1 1 0 106.666667 53.333333 53.333333 0 0 1 0-106.666667z m341.333334 0a53.333333 53.333333 0 1 1 0 106.666667 53.333333 53.333333 0 0 1 0-106.666667z"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer class="main-footer">
-        <div class="footer-content">
-            <div class="footer-grid">
-                <div class="footer-section">
-                    <h2 class="footer-title">About <span>Us</span></h2>
-                    <p class="footer-description">
-                        As a passionate Unity developer, I specialize in creating immersive gaming experiences 
-                        and developing powerful editor tools. With extensive experience in game development 
-                        and a keen eye for design, I bring games to life through innovative gameplay mechanics 
-                        and stunning visual effects. My expertise extends to crafting intuitive GUI animations 
-                        that enhance user experience and engagement.
-                    </p>
-                    <p class="footer-citation">
-                        "I believe that great games are born from the perfect blend of technical excellence 
-                        and artistic vision. Every project is an opportunity to push the boundaries of what's 
-                        possible in game development and animation design."
-                    </p>
-                    <div class="social-icons">
-                        <a href="#" class="social-icon"><i class="fab fa-bilibili"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-weixin"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-qq"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
+    <div class="wechat-popup" id="wechatPopup">
+        <div class="popup-content">
+            <div class="close-btn" onclick="closePopup()">&times;</div>
+            <div class="qr-container">
+                <img src="images/wechat-qr.jpg" alt="WeChat QR Code">
+                <p>扫码添加微信</p>
             </div>
         </div>
-    </footer>
+    </div>
 
     <script src="js/main.js"></script>
 </body>
