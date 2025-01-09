@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,66 +22,166 @@
         <div class="docs-layout">
             <aside class="docs-sidebar">
                 <div class="language-switch">
-                    <button class="lang-btn active" data-lang="en">English</button>
-                    <button class="lang-btn" data-lang="zh">中文</button>
+                    <a href="hierarchy-vision-plus.html" class="lang-btn active">English</a>
+                    <a href="hierarchy-vision-plus-zh.html" class="lang-btn">中文</a>
                 </div>
                 <nav class="docs-nav">
                     <ul>
-                        <li><a href="#overview" class="active">Overview</a></li>
-                        <li><a href="#features">Features</a></li>
+                        <li><a href="#introduction" class="active">Introduction</a></li>
+                        <li><a href="#system-requirements">System Requirements</a></li>
                         <li><a href="#installation">Installation</a></li>
-                        <li><a href="#usage">Usage</a></li>
-                        <li><a href="#configuration">Configuration</a></li>
+                        <li><a href="#usage">Main Features</a></li>
+                        <li><a href="#configuration">Version Information</a></li>
                     </ul>
                 </nav>
             </aside>
             <div class="docs-container">
                 <h1>Hierarchy Vision Plus</h1>
                 <div class="docs-content">
-                    <section id="overview" class="docs-section">
-                        <h2>Overview</h2>
-                        <p>Hierarchy Vision Plus is a powerful Unity editor extension that enhances your scene hierarchy management by displaying component icons next to GameObjects. This visual aid makes it easier to identify and organize objects in your scenes.</p>
+                    <section id="introduction" class="docs-section">
+                        <h2>Introduction</h2>
+                        <p>Hierarchy Vision Plus is a powerful Unity editor extension package that enhances both the Hierarchy and Project views in Unity. It provides developers with advanced tools for efficient scene object and project resource management.</p>
                     </section>
 
-                    <section id="features" class="docs-section">
-                        <h2>Features</h2>
+                    <section id="system-requirements" class="docs-section">
+                        <h2>System Requirements</h2>
                         <ul>
-                            <li>Component icon display in hierarchy</li>
-                            <li>Easy hotkey toggle functionality</li>
-                            <li>Customizable icon settings</li>
-                            <li>Performance optimized</li>
-                            <li>Unity 2019.4 and above support</li>
+                            <li>Unity 2018.3+</li>
+                            <li>Tested on:
+                                <ul>
+                                    <li>Unity 2018.3 LTS</li>
+                                    <li>Unity 2019.3 LTS</li>
+                                    <li>Unity 2020.3 LTS</li>
+                                    <li>Unity 2021.3 LTS</li>
+                                    <li>Unity 2022.3 LTS</li>
+                                </ul>
+                            </li>
+                            <li>Compatible with Windows/MacOS/Linux</li>
                         </ul>
                     </section>
 
                     <section id="installation" class="docs-section">
                         <h2>Installation</h2>
                         <ol>
-                            <li>Open Unity Package Manager</li>
-                            <li>Click the + button in the top-left corner</li>
-                            <li>Select "Add package from git URL"</li>
-                            <li>Enter the package URL</li>
-                            <li>Click Add</li>
+                            <li>In Unity Editor, navigate to Assets > Import Package > Custom Package</li>
+                            <li>Select the downloaded EditorExtension.unitypackage file</li>
+                            <li>Ensure all files are selected and click "Import"</li>
                         </ol>
                     </section>
 
                     <section id="usage" class="docs-section">
-                        <h2>Usage</h2>
-                        <p>After installation, the component icons will automatically appear in your hierarchy window. You can toggle the visibility using the following hotkey:</p>
+                        <h2>Main Features</h2>
+                        <h3>1. Quarantine Display</h3>
                         <ul>
-                            <li>Windows: Ctrl + Shift + H</li>
-                            <li>macOS: Cmd + Shift + H</li>
+                            <li>Shortcut key:
+                                <ul>
+                                    <li><span style="color: orange;">~</span> : Switch to Hierarchy Isolation Mode (only display selected nodes)
+                                        <div class="video-container">
+                                            <video controls width="100%">
+                                                <source src="../videos/Hierarchy isolation.mp4" type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                        </div>
+                                    </li>
+                                    <li><span style="color: orange;">Ctrl + ~</span> : Switch to Scene isolation mode (Hierarchy and Scene windows only display selected nodes)
+                                        <div class="video-container">
+                                            <video controls width="100%">
+                                                <source src="../videos/Scene isolation.mp4" type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
                         </ul>
+
+                        <h3>2. Material Preview and Editing</h3>
+                        <p>Directly preview and edit material names in Hierarchy</p>
+                        <ul>
+                            <li>Operation method:
+                                <ul>
+                                    <li>Left-click on the material color block: locate the material</li>
+                                    <li>Ctrl + Hover over material color block: preview material</li>
+                                    <li>Double-click the material color block: Edit material name</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <div class="video-container">
+                            <video controls width="100%">
+                                <source src="../videos/Preview and edit material name.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+
+                        <h3>3. Node icon</h3>
+                        <ul>
+                            <li>Node component icon display</li>
+                            <li>Hotkey: <span style="color: orange;">Ctrl + Shift + ~</span> to switch between node icons and component icons</li>
+                        </ul>
+                        <div class="video-container">
+                            <video controls width="100%">
+                                <source src="../videos/Display component icon.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+
+                        <h3>4. Background color editing</h3>
+                        <ul>
+                            <li>Support preset and custom colors</li>
+                            <li>You can choose whether to apply to child nodes</li>
+                            <li>Press Alt + click the node icon to change the node background color</li>
+                        </ul>
+                        <div class="video-container">
+                            <video controls width="100%">
+                                <source src="../videos/Change node background color.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+
+                        <h3>5. Tree View</h3>
+                        <ul>
+                            <li>Display object hierarchy, a clear visual hierarchy presentation.</li>
+                        </ul>
+                        <div class="video-container">
+                            <video controls width="100%">
+                                <source src="../videos/Tree diagram.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+
+                        <h3>6. Folder Color Management</h3>
+                        <ul>
+                            <li>Support preset and custom colors</li>
+                            <li>You can choose whether to apply to subfolders</li>
+                            <li>Press Alt + click the folder icon: change folder background color</li>
+                        </ul>
+                        <div class="video-container">
+                            <video controls width="100%">
+                                <source src="../videos/Change folder background color.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+
+                        <h3>7. Folder tree structure</h3>
+                        <ul>
+                            <li>Clearly display the folder hierarchy</li>
+                        </ul>
+                        <div class="video-container">
+                            <video controls width="100%">
+                                <source src="../videos/Folder tree.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
                     </section>
 
                     <section id="configuration" class="docs-section">
-                        <h2>Configuration</h2>
-                        <p>You can customize the extension through the preferences window:</p>
-                        <ol>
-                            <li>Go to Edit > Preferences</li>
-                            <li>Select Hierarchy Vision Plus tab</li>
-                            <li>Adjust settings to your needs</li>
-                        </ol>
+                        <h2>Version information</h2>
+                        <p>Current version: v1.0.0</p>
+                        <ul>
+                            <li>Includes all basic functions</li>
+                            <li>Supports Unity 2018.3.0+</li>
+                            <li>Initial release version</li>
+                        </ul>
                     </section>
                 </div>
             </div>

@@ -1,13 +1,20 @@
 // 滚动动画
 const observerOptions = {
     root: null,
-    rootMargin: '-50px',
+    rootMargin: '0px',
     threshold: 0.1
 };
 
 // 创建观察者
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
+        // 调试：打印每个被观察元素的信息
+        console.log('Observed entry:', {
+            target: entry.target,
+            isIntersecting: entry.isIntersecting,
+            intersectionRatio: entry.intersectionRatio
+        });
+        
         // 无论向上还是向下滚动，只要元素进入视口就添加动画
         entry.target.classList.toggle('is-visible', entry.isIntersecting);
     });
@@ -16,7 +23,7 @@ const observer = new IntersectionObserver((entries) => {
 // 页面加载时初始化
 document.addEventListener('DOMContentLoaded', () => {
     // 观察所有需要动画的元素
-    document.querySelectorAll('.fade-in-section, .hero-content p, .project-description, .project-link, .footer-section, .project-grid img, .project-item').forEach(item => {
+    document.querySelectorAll('.fade-in-section, .hero-content p, .project-description, .project-link, .footer-section, .project-grid img, .project-item, .about-me, .about-me-avatar, .about-me-title, .about-me-description, .about-me-quote, .about-me-social, .project-content h2, .hero-content h1, .hero-section .fade-in-section, .hero-content-title').forEach(item => {
         observer.observe(item);
     });
 });
@@ -242,6 +249,41 @@ document.addEventListener('DOMContentLoaded', () => {
     updateNavigation();
 });
 
+// 文档导航链接活跃状态切换和平滑滚动逻辑
+document.addEventListener('DOMContentLoaded', function() {
+    // 文档导航链接活跃状态切换
+    const navLinks = document.querySelectorAll('.docs-nav a');
+    const currentUrl = window.location.href;
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            // 移除所有链接的活跃状态
+            navLinks.forEach(l => l.classList.remove('active'));
+            
+            // 为点击的链接添加活跃状态
+            this.classList.add('active');
+        });
+
+        // 如果链接对应当前页面的锚点，自动设置为活跃状态
+        if (currentUrl.includes(link.getAttribute('href'))) {
+            link.classList.add('active');
+        }
+    });
+
+    // 平滑滚动到锚点
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                e.preventDefault();
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+});
+
 // 文档语言切换功能
 function initLanguageSwitch() {
     const langBtns = document.querySelectorAll('.lang-btn');
@@ -308,10 +350,46 @@ function initLanguageSwitch() {
     updateContent(preferredLang);
 }
 
+// 文档页面语言切换
+function initDocLanguageSwitch() {
+    const langBtns = document.querySelectorAll('.lang-btn');
+    if (!langBtns.length) return;
+
+    const currentLang = window.location.pathname.includes('-zh') ? 'zh' : 'en';
+    const baseFileName = window.location.pathname.split('/').pop().replace('-zh.html', '.html').replace('.html', '');
+
+    langBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const targetLang = btn.dataset.lang;
+            let targetUrl;
+
+            if (targetLang === 'zh' && !window.location.pathname.includes('-zh.html')) {
+                targetUrl = baseFileName + '-zh.html';
+            } else if (targetLang === 'en' && window.location.pathname.includes('-zh.html')) {
+                targetUrl = baseFileName + '.html';
+            }
+
+            if (targetUrl) {
+                window.location.href = targetUrl;
+            }
+        });
+    });
+
+    // 初始化按钮状态
+    langBtns.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === currentLang);
+    });
+}
+
 // 在页面加载完成后初始化语言切换功能
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM Content Loaded'); // 调试日志
     initLanguageSwitch();
+    
+    // 如果是文档页面，额外初始化文档语言切换
+    if (document.querySelector('.docs-sidebar .language-switch')) {
+        initDocLanguageSwitch();
+    }
 });
 
 const docContent = {

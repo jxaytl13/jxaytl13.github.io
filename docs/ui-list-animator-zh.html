@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI列表动画器文档</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/docs.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <a href="../index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i>
+                <span>返回</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="docs-main">
+        <div class="docs-layout">
+            <aside class="docs-sidebar">
+                <div class="language-switch">
+                    <button class="lang-btn" data-lang="en" onclick="window.location.href='ui-list-animator.html'">English</button>
+                    <button class="lang-btn active" data-lang="zh">中文</button>
+                </div>
+                <nav class="docs-nav">
+                    <ul>
+                        <li><a href="#introduction">介绍</a></li>
+                        <li><a href="#system-requirements">系统需求</a></li>
+                        <li><a href="#installation">安装</a></li>
+                        <li><a href="#main-functions">主要功能</a></li>
+                    </ul>
+                </nav>
+            </aside>
+            <div class="docs-container">
+                <h1>UI列表动画器</h1>
+                <div class="docs-content">
+                    <section id="introduction" class="docs-section">
+                        <h2>介绍</h2>
+                        <p>UI列表动画器（UIListAnimation）是一个强大且灵活的Unity UI列表动画插件，可以轻松为列表或网格中的UI元素添加动画效果。该插件依赖于DOTween插件。</p>
+                    </section>
+
+                    <section id="system-requirements" class="docs-section">
+                        <h2>系统需求</h2>
+                        <ul>
+                            <li>Unity 2020.3+（未测试较旧的2020版本，可能兼容）</li>
+                            <li>DOTween/Pro（必需）</li>
+                        </ul>
+                    </section>
+
+                    <section id="installation" class="docs-section">
+                        <h2>安装步骤</h2>
+                        <ol>
+                            <li>在Unity编辑器中，选择 资源 > 导入包 > 自定义包</li>
+                            <li>选择下载的 EditorExtension.unitypackage 文件</li>
+                            <li>确保已安装DOTween/Pro插件</li>
+                        </ol>
+                    </section>
+
+                    <section id="main-functions" class="docs-section">
+                        <h2>主要功能</h2>
+                        <h3>支持的动画类型</h3>
+                        <ul>
+                            <li>位置</li>
+                            <li>缩放</li>
+                            <li>旋转</li>
+                            <li>画布组</li>
+                        </ul>
+
+                        <h3>播放模式</h3>
+                        <ul>
+                            <li>普通</li>
+                            <li>网格</li>
+                        </ul>
+
+                        <h3>动画配置选项</h3>
+                        <ul>
+                            <li>自定义缓动函数（多种内置缓动类型）</li>
+                            <li>自定义动画曲线</li>
+                            <li>灵活的时间控制（间隔模式/持续时间模式）</li>
+                            <li>可调整的起始延迟</li>
+                            <li>支持动画预览（在运行状态）</li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <script src="../js/main.js"></script>
+    <script src="../js/animation.js"></script>
+</body>
+</html>

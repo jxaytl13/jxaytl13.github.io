@@ -107,6 +107,11 @@
 
 .docs-content {
     line-height: 1.8;
+    font-weight: 300; /* 细一些的字体粗细 */
+}
+
+body.dark-mode .docs-content {
+    color: rgba(255, 255, 255, 0.85); /* 白色，但透明度降低到0.85 */
 }
 
 .docs-section {
@@ -136,6 +141,19 @@
 .docs-section li {
     margin-bottom: 10px;
     font-size: 1.1rem;
+}
+
+/* 视频容器样式 */
+.video-container {
+    max-width: 800px;
+    margin: 20px auto;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.video-container video {
+    width: 100%;
+    height: auto;
 }
 
 /* 返回按钮样式 */
@@ -173,49 +191,40 @@
     gap: 20px;
     padding: 0 15px;
     margin-top: 60px;
-    height: 40px;
-    align-items: center;
 }
 
-.lang-btn {
-    background: transparent;
+.language-switch .lang-btn {
+    background: none;
     border: none;
-    color: rgba(255, 255, 255, 0.7);
-    padding: 8px 0;
+    color: #666;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 16px;
     position: relative;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease;
+    text-decoration: none;
 }
 
-.lang-btn::after {
+.language-switch .lang-btn:hover {
+    color: #333;
+}
+
+:root {
+    --theme-color: #FF3D3D;
+}
+
+.language-switch .lang-btn.active {
+    color: var(--theme-color);
+    font-weight: bold;
+}
+
+.language-switch .lang-btn.active::after {
     content: '';
     position: absolute;
-    bottom: 0;
+    bottom: -5px;
     left: 0;
     width: 100%;
     height: 2px;
-    background: #FF3D3D;
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.3s ease;
-}
-
-.lang-btn:hover {
-    color: #fff;
-}
-
-.lang-btn:hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
-}
-
-.lang-btn.active {
-    color: #FF3D3D;
-}
-
-.lang-btn.active::after {
-    transform: scaleX(1);
+    background-color: var(--theme-color);
 }
 
 /* 响应式调整 */
