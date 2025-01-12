@@ -23,7 +23,7 @@ const observer = new IntersectionObserver((entries) => {
 // 页面加载时初始化
 document.addEventListener('DOMContentLoaded', () => {
     // 观察所有需要动画的元素
-    document.querySelectorAll('.fade-in-section, .hero-content p, .project-description, .project-link, .footer-section, .project-grid img, .project-item, .about-me, .about-me-avatar, .about-me-title, .about-me-description, .about-me-quote, .about-me-social, .project-content h2, .hero-content h1, .hero-section .fade-in-section, .hero-content-title').forEach(item => {
+    document.querySelectorAll('.fade-in-section, .hero-content p, .project-description, .project-link, .footer-section, .project-grid img, .project-item, .about-me, .about-me-avatar, .about-me-title, .about-me-description, .about-me-quote, .about-me-social, .project-content h2, .hero-content h1, .hero-section .fade-in-section, .hero-content-title, .circle-container').forEach(item => {
         observer.observe(item);
     });
 });
@@ -46,27 +46,7 @@ let isScrolling;
 
 window.addEventListener('scroll', () => {
     const header = document.querySelector('.main-header');
-    const currentScroll = window.pageYOffset;
-    
-    // 向下滚动时隐藏
-    if (currentScroll > lastScrollTop && currentScroll > 50) {
-        header.style.transform = 'translateY(-100%)';
-    } 
-    // 向上滚动时显示
-    else {
-        header.style.transform = 'translateY(0)';
-    }
-    
-    lastScrollTop = currentScroll;
-    
-    // 清除之前的定时器
-    clearTimeout(isScrolling);
-    
-    // 设置新的定时器
-    isScrolling = setTimeout(() => {
-        // 停止滚动一段时间后显示标题栏
-        header.style.transform = 'translateY(0)';
-    }, 150);
+    header.style.transform = 'translateY(0)';  // 保持标题栏始终显示
 });
 
 // 添加微信弹窗控制

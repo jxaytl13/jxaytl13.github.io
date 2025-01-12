@@ -1,4 +1,8 @@
 /* 重置样式 */
+:root {
+    --theme-color: #4FFF88; /* 浅绿色主题色 */
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -31,7 +35,8 @@ body {
 }
 
 .loader-content {
-    font-size: 2rem;
+    font-family: 'VT323', monospace;
+    font-size: 2.5rem;
     letter-spacing: 4px;
     animation: pulse 1.5s infinite;
 }
@@ -50,7 +55,6 @@ body {
     width: 100%;
     background: rgba(0, 0, 0, 0.9);
     z-index: 1000;
-    transition: transform 0.3s ease, opacity 0.3s ease;
     backdrop-filter: blur(10px);
 }
 
@@ -65,7 +69,8 @@ body {
 }
 
 .header-title {
-    font-size: 1.5rem;
+    font-family: 'VT323', monospace;
+    font-size: 1.5rem;  /* 从 2rem 调小到 1.5rem */
     color: #fff;
     letter-spacing: 2px;
     font-weight: 300;
@@ -87,9 +92,10 @@ body {
 }
 
 .nav-link {
+    font-family: 'VT323', monospace;
     color: #fff;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 1.2rem;
     letter-spacing: 2px;
     transition: all 0.3s ease;
     opacity: 0.7;
@@ -102,11 +108,11 @@ body {
 .nav-link::after {
     content: '';
     position: absolute;
-    bottom: -15px;  /* 向下偏移10px */
+    bottom: -15px;
     left: 0;
     width: 0;
     height: 4px;
-    background-color: #FF3D3D;
+    background-color: var(--theme-color);
     transition: width 0.3s ease;
 }
 
@@ -134,17 +140,255 @@ body {
     align-items: center;
     position: relative;
     background: #000;
+    overflow: hidden;
 }
 
-.hero-section::before {
-    content: '';
+/* 背景装饰圆形 */
+.background-circles {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
     z-index: 1;
+    pointer-events: none;
+}
+
+/* 圆形容器 */
+.circle-container {
+    position: absolute;
+    opacity: 0;
+    transform: translateY(var(--move-distance, 50px));
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* 根据大小设置z-index，大的在前面 */
+.circle-container-1 { --move-distance: 100px; z-index: 10; }  /* 280x280 */
+.circle-container-2 { --move-distance: 80px; z-index: 10; }   /* 280x280 */
+.circle-container-3 { --move-distance: 90px; z-index: 9; }    /* 250x250 */
+.circle-container-4 { --move-distance: 70px; z-index: 8; }    /* 180x180 */
+.circle-container-5 { --move-distance: 85px; z-index: 8; }    /* 220x220 */
+.circle-container-6 { --move-distance: 95px; z-index: 8; }    /* 200x200 */
+.circle-container-7 { --move-distance: 60px; z-index: 7; }    /* 150x150 */
+.circle-container-8 { --move-distance: 50px; z-index: 6; }    /* 100x100 */
+.circle-container-11 { --move-distance: 45px; z-index: 5; }   /* 90x90 */
+.circle-container-12 { --move-distance: 35px; z-index: 4; }   /* 70x70 */
+
+.circle-container.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.circle {
+    position: relative;  /* 改为相对定位 */
+    width: 150px;
+    height: 150px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    mix-blend-mode: screen;
+    filter: brightness(1.2);
+    animation: float 20s infinite ease-in-out;
+}
+
+/* 设置每个圆形容器的位置 */
+.circle-container-1 {
+    width: 280px;
+    height: 280px;
+    top: 10%;
+    left: 15%;
+}
+
+.circle-container-2 {
+    width: 280px;
+    height: 280px;
+    top: 60%;
+    left: 80%;
+}
+
+.circle-container-3 {
+    width: 250px;
+    height: 250px;
+    top: 40%;
+    left: 5%;
+}
+
+.circle-container-4 {
+    width: 180px;
+    height: 180px;
+    top: 20%;
+    right: 10%;
+}
+
+.circle-container-5 {
+    width: 220px;
+    height: 220px;
+    bottom: 15%;
+    left: 30%;
+}
+
+.circle-container-6 {
+    width: 200px;
+    height: 200px;
+    top: 65%;
+    left: 50%;
+}
+
+.circle-container-7 {
+    width: 150px;
+    height: 150px;
+    top: 35%;
+    left: 65%;
+}
+
+.circle-container-8 {
+    width: 100px;
+    height: 100px;
+    top: 25%;
+    left: 40%;
+}
+
+
+.circle-container-11 {
+    width: 90px;
+    height: 90px;
+    top: 48%;
+    left: 25%;
+}
+
+.circle-container-12 {
+    width: 70px;
+    height: 70px;
+    bottom: 40%;
+    right: 40%;
+}
+
+/* 更新圆形样式以匹配容器大小 */
+.circle-1 { width: 100%; height: 100%; background-image: url('../images/Ellipse8.png'); }
+.circle-2 { width: 100%; height: 100%; background-image: url('../images/Ellipse9.png'); }
+.circle-3 { width: 100%; height: 100%; background-image: url('../images/Ellipse10.png'); }
+.circle-4 { width: 100%; height: 100%; background-image: url('../images/Ellipse11.png'); }
+.circle-5 { width: 100%; height: 100%; background-image: url('../images/Ellipse12.png'); }
+.circle-6 { width: 100%; height: 100%; background-image: url('../images/Ellipse14.png'); }
+.circle-7 { width: 100%; height: 100%; background-image: url('../images/Ellipse13.png'); }
+.circle-8 { width: 100%; height: 100%; background-image: url('../images/Ellipse8.png'); }
+.circle-11 { width: 100%; height: 100%; background-image: url('../images/Ellipse11.png'); }
+.circle-12 { width: 100%; height: 100%; background-image: url('../images/Ellipse12.png'); }
+
+/* 基础浮动动画 - 只处理位移和缩放 */
+@keyframes float1 {
+    0% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(20px, -20px) scale(1.05); }
+    66% { transform: translate(-15px, 15px) scale(0.95); }
+    100% { transform: translate(0, 0) scale(1); }
+}
+
+@keyframes float2 {
+    0% { transform: translate(0, 0) scale(0.95); }
+    33% { transform: translate(-25px, -15px) scale(1.1); }
+    66% { transform: translate(20px, 10px) scale(1); }
+    100% { transform: translate(0, 0) scale(0.95); }
+}
+
+@keyframes float3 {
+    0% { transform: translate(0, 0) scale(1.05); }
+    33% { transform: translate(15px, -25px) scale(0.95); }
+    66% { transform: translate(-20px, 20px) scale(1.1); }
+    100% { transform: translate(0, 0) scale(1.05); }
+}
+
+/* 添加独立的旋转动画 */
+@keyframes rotate1 {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes rotate2 {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+}
+
+/* 为每个圆形设置组合动画 */
+.circle-1 { 
+    width: 100%; height: 100%; 
+    background-image: url('../images/Ellipse8.png');
+    animation: 
+        float1 85s infinite ease-in-out,
+        rotate1 200s infinite linear;  /* 线性旋转，200秒一圈 */
+}
+.circle-2 { 
+    width: 100%; height: 100%; 
+    background-image: url('../images/Ellipse9.png');
+    animation: 
+        float2 80s infinite ease-in-out,
+        rotate2 180s infinite linear;
+}
+.circle-3 { 
+    width: 100%; height: 100%; 
+    background-image: url('../images/Ellipse10.png');
+    animation: 
+        float3 82s infinite ease-in-out,
+        rotate1 220s infinite linear;
+}
+.circle-4 { 
+    width: 100%; height: 100%; 
+    background-image: url('../images/Ellipse11.png');
+    animation: 
+        float1 78s infinite ease-in-out,
+        rotate2 190s infinite linear;
+}
+.circle-5 { 
+    width: 100%; height: 100%; 
+    background-image: url('../images/Ellipse12.png');
+    animation: 
+        float2 83s infinite ease-in-out,
+        rotate1 210s infinite linear;
+}
+.circle-6 { 
+    width: 100%; height: 100%; 
+    background-image: url('../images/Ellipse14.png');
+    animation: 
+        float3 81s infinite ease-in-out,
+        rotate2 230s infinite linear;
+}
+.circle-7 { 
+    width: 100%; height: 100%; 
+    background-image: url('../images/Ellipse13.png');
+    animation: 
+        float1 79s infinite ease-in-out,
+        rotate1 195s infinite linear;
+}
+.circle-8 { 
+    width: 100%; height: 100%; 
+    background-image: url('../images/Ellipse8.png');
+    animation: 
+        float2 84s infinite ease-in-out,
+        rotate2 215s infinite linear;
+}
+.circle-9 { 
+    width: 100%; height: 100%; 
+    background-image: url('../images/Ellipse9.png');
+    animation: 
+        float3 77s infinite ease-in-out,
+        rotate1 185s infinite linear;
+}
+.circle-11 { 
+    width: 100%; height: 100%; 
+    background-image: url('../images/Ellipse11.png');
+    animation: 
+        float1 86s infinite ease-in-out,
+        rotate2 225s infinite linear;
+}
+.circle-12 { 
+    width: 100%; height: 100%; 
+    background-image: url('../images/Ellipse12.png');
+    animation: 
+        float2 76s infinite ease-in-out,
+        rotate1 205s infinite linear;
+}
+
+.hero-section::before {
+    display: none;  /* 移除黑色遮罩层 */
 }
 
 .hero-content {
@@ -169,7 +413,8 @@ body {
 }
 
 .hero-content p {
-    font-size: clamp(1rem, 4vw, 1.5rem);
+    font-family: 'VT323', monospace;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);  /* 调整字体大小范围 */
     max-width: 600px;
     margin: 0 auto;
     opacity: 0;
@@ -210,33 +455,18 @@ body {
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    background: #000;  /* 添加纯黑色背景 */
 }
 
-/* 添加背景图样式 */
+/* 移除原有的背景图样式 */
 .project-screen::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    opacity: 0.6;
-    z-index: 1;
+    display: none;  /* 隐藏原有的背景图层 */
 }
 
-/* 第一个项目的背景（Hierarchy Vision Plus） */
-.project-screen:nth-child(1)::before {
-    background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1400');  /* 代码编辑器背景 */
-    opacity: 0.4;  /* 降低不透明度以提高文字可读性 */
-}
-
-/* 第二个项目的背景（UI List Animator） */
+/* 移除特定项目的背景图 */
+.project-screen:nth-child(1)::before,
 .project-screen:nth-child(2)::before {
-    background-image: url('https://images.unsplash.com/photo-1607799279861-4dd421887fb3?w=1400');  /* UI/UX 设计背景 */
-    opacity: 0.4;  /* 降低不透明度以提高文字可读性 */
+    display: none;
 }
 
 .project-item {
@@ -272,6 +502,7 @@ body {
 }
 
 .project-content h2 {
+    font-family: 'VT323', monospace;
     font-size: 4rem;
     margin-bottom: 40px;
     font-weight: 300;
@@ -295,8 +526,9 @@ body {
 }
 
 .project-description {
-    font-size: 1.3rem;
-    line-height: 1.8;
+    font-family: 'VT323', monospace;
+    font-size: 1.5rem;
+    line-height: 1.6;
     color: #fff;
     margin-bottom: 40px;
     opacity: 1;
@@ -311,18 +543,40 @@ body {
 }
 
 .project-link {
-    display: inline-flex;
-    align-items: center;
-    color: #FF3D3D;
+    font-family: 'VT323', monospace;
+    font-size: 1.5rem;
+    color: var(--theme-color);
     text-decoration: none;
-    font-size: 1.3rem;
     letter-spacing: 2px;
     transition: all 0.3s ease;
-    margin-top: 20px;
-    opacity: 1;
-    transform: translateY(0);
-    transition: all 0.5s ease-out;
-    will-change: opacity, transform;
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+    margin-top: -2px;
+    text-shadow: none;
+}
+
+/* 中文链接特殊样式 */
+.project-link[href*="Aa3pw2eb"], 
+.project-link[href*="RjlIwOIk"] {
+    font-family: 'Ark Pixel', monospace;
+    font-size: 1.2rem;  /* 稍微调小一点，因为中文字体看起来会大一些 */
+    letter-spacing: 1px;  /* 中文字间距可以小一点 */
+}
+
+/* 恢复英文链接的原始样式 */
+.project-link {
+    font-family: 'VT323', monospace;
+    font-size: 1.5rem;
+    color: var(--theme-color);
+    text-decoration: none;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+    margin-top: -2px;
+    text-shadow: none;
 }
 
 .project-link.is-visible {
@@ -339,7 +593,8 @@ body {
 }
 
 .project-link:hover {
-    color: #ff6b6b;
+    color: #4FFF88;
+    text-shadow: 0 0 10px #4FFF88, 0 0 20px #4FFF88, 0 0 30px #4FFF88;  /* 多层发光效果 */
 }
 
 .project-link:hover .arrow {
@@ -395,8 +650,9 @@ body {
 
 /* 页脚（About Me） */
 .main-footer {
+    position: relative;
     height: 100vh;
-    background: #000;  /* 改为纯黑色背景 */
+    background: #000;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -432,12 +688,11 @@ body {
 }
 
 .footer-title {
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-family: 'VT323', monospace;
+    font-size: clamp(2rem, 4vw, 3rem);
     margin-bottom: 20px;
     letter-spacing: 5px;
     text-align: center;
-    font-family: Arial, sans-serif;
-    font-style: normal;
 }
 
 .footer-title span {
@@ -449,8 +704,9 @@ body {
 }
 
 .footer-description {
-    font-size: 1rem;
-    line-height: 1.8;
+    font-family: 'VT323', monospace;
+    font-size: 1.5rem;
+    line-height: 1.6;
     margin-bottom: 30px;
     color: #fff;
     text-align: center;
@@ -460,7 +716,8 @@ body {
 }
 
 .footer-citation {
-    font-size: 0.9rem;
+    font-family: 'VT323', monospace;
+    font-size: 1.3rem;
     color: #888;
     margin-bottom: 30px;
     line-height: 1.6;
@@ -582,16 +839,40 @@ body {
     animation: scroll 2s infinite;
 }
 
-/* 红色竖线 */
-.scroll-indicator::after {
-    content: '';
+/* home页底部竖线 */
+.vertical-line-bottom {
     position: absolute;
-    top: calc(100% + 30px);  /* 鼠标图标下方30px */
+    bottom: 0;
     left: 50%;
     width: 1px;
-    height: 150px;
-    background: #E31C25;  /* 使用主色红 */
+    height: 10px;
+    background: var(--theme-color);
     transform: translateX(-50%);
+}
+
+/* project页顶部竖线 */
+.vertical-line-top {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 1px;
+    height: 140px;
+    background: var(--theme-color);
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+/* Logo样式 */
+.header-logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-logo img {
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
 }
 
 @keyframes scroll {
@@ -658,7 +939,7 @@ body {
 }
 
 .social-icon:hover {
-    color: #FF3D3D;
+    color: var(--theme-color);
     transform: translateY(-5px);
 }
 
@@ -732,8 +1013,9 @@ body {
 }
 
 .qr-container p {
+    font-family: 'VT323', monospace;
     color: #fff;
-    font-size: 16px;
+    font-size: 1.2rem;
     margin: 0;
 }
 
@@ -837,4 +1119,158 @@ body {
 }.docs-content {
     line-height: 1.8;
     font-weight: 300; /* 细一些的字体粗细 */
+}
+
+.docs-nav a.active {
+    color: var(--theme-color);
+}
+
+.docs-nav a.active::before {
+    opacity: 1;
+    transform: scale(1);
+    background-color: var(--theme-color);
+    width: 6px;
+    height: 6px;
+}
+
+.docs-section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: var(--theme-color);
+}
+
+.back-link:hover {
+    color: var(--theme-color);
+}
+
+.language-switch .lang-btn.active {
+    color: var(--theme-color);
+    font-weight: bold;
+}
+
+.language-switch .lang-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--theme-color);
+}
+
+.project-links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+    margin-top: 20px;
+    height: 36px;  /* 增加容器高度 */
+}
+
+.project-link {
+    color: var(--theme-color);
+    text-decoration: none;
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+    margin-top: -2px;
+}
+
+.project-link:hover {
+    color: #4FFF88;
+}
+
+.link-separator {
+    color: #fff;
+    font-size: 1.3rem;
+    opacity: 0.5;
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+    margin-top: -2px;
+}
+
+.project-item.reverse .project-content {
+    text-align: right;
+}
+
+.project-item.reverse .project-links {
+    justify-content: flex-end;
+}
+
+/* 设置中文字体 */
+.project-description, .footer-description, .footer-citation, .qr-container p {
+    font-family: 'VT323', monospace;
+}
+
+/* 英文内容保持VT323字体 */
+.header-title, .nav-link, .hero-content p, .project-content h2, .project-link, .footer-title {
+    font-family: 'VT323', monospace;
+}
+
+/* 只对中文内容使用方舟像素字体 */
+.qr-container p {
+    font-family: 'Ark Pixel', monospace;
+    font-size: 1.2rem;
+}
+
+.project-screen:nth-child(1) .vertical-line-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    height: 100px;  /* Hierarchy Vision Plus 底部竖线长度 */
+    background: var(--theme-color);
+    transform: translateX(-50%);
+}
+
+.project-screen:nth-child(2) .vertical-line-top {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 1px;
+    height: 100px;  /* UI List Animator 顶部竖线长度 */
+    background: var(--theme-color);
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+/* 竖线基础样式 */
+.vertical-line {
+    position: absolute;
+    left: 50%;
+    width: 1px;
+    background: var(--theme-color);
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+/* 顶部竖线 */
+.vertical-line.top {
+    top: 0;
+    height: 100px;
+}
+
+/* 底部竖线 */
+.vertical-line.bottom {
+    bottom: 0;
+    height: 100px;
+}
+
+.project-screen:first-child .vertical-line.top {
+    height: 190px;  /* Hierarchy Vision Plus 顶部竖线长度 */
+}
+
+/* 其他竖线保持原来的长度 */
+.vertical-line.top {
+    top: 0;
+    height: 100px;
+}
+
+.vertical-line.bottom {
+    bottom: 0;
+    height: 100px;
 }
